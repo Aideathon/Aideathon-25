@@ -1,0 +1,2 @@
+import React from 'react'
+export default function Card({children}){ return <div style={{background:'var(--card)',padding:16,borderRadius:12,boxShadow:'var(--shadow)',border:'1px solid rgba(255,255,255,0.02)'}}>{children}</div> }

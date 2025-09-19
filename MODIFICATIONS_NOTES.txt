@@ -1,0 +1,18 @@
+MODIFICATIONS APPLIED
+- Added src/components/EmojiIcon.jsx : maps common emojis to lucide-react icons, falls back to text when lucide-react isn't installed.
+- Added src/styles/theme.css : responsive + light/dark CSS variables and utility classes.
+- Added src/utils/theme.js : simple theme init & toggle helpers (call initTheme() on app start).
+- Replaced emoji characters in 2 source files with <EmojiIcon char="..."/>. Backups with .bak extension were created for modified files.
+- Created this ZIP: /mnt/data/hackathon_modified.zip
+
+IMPORTANT:
+- This script does NOT install npm packages. To use lucide-react icons, run in your project folder:
+    npm install lucide-react
+
+- To apply Tailwind properly, follow Tailwind installation for your framework (Vite/CRA). I left a simple theme.css to work immediately without Tailwind; if you want full Tailwind integration I can add the config and boilerplate (but that requires npm install).
+
+Files modified:
+[
+  "hackathon_full_connected_fixed/src/components/EmojiIcon.jsx",
+  "hackathon_full_connected_fixed/src/pages/Contact.jsx"
+]
