@@ -1,10 +1,17 @@
-import React from "react"
-import { motion } from "framer-motion"
-import Countdown from "../components/Countdown"
-import { Calendar, MapPin, GraduationCap, Sparkles, Award, Users, ClipboardCheck, FileText } from "lucide-react"
+import React from "react";
+import { motion } from "framer-motion";
+import Countdown from "../components/Countdown";
+import {
+  Calendar,
+  MapPin,
+  GraduationCap,
+  Sparkles,
+  Award,
+  ClipboardCheck,
+  FileText,
+} from "lucide-react";
 
 export default function Home() {
-  // Variants for stagger animations
   const cardVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: (i) => ({
@@ -12,7 +19,7 @@ export default function Home() {
       y: 0,
       transition: { delay: i * 0.2, duration: 0.6 },
     }),
-  }
+  };
 
   const listVariants = {
     hidden: { opacity: 0, x: -20 },
@@ -21,9 +28,8 @@ export default function Home() {
       x: 0,
       transition: { delay: i * 0.15, duration: 0.5 },
     }),
-  }
+  };
 
-  // Animated icon wrapper
   const AnimatedIcon = ({ children }) => (
     <motion.div
       initial={{ scale: 0, rotate: -45, opacity: 0 }}
@@ -34,7 +40,7 @@ export default function Home() {
     >
       {children}
     </motion.div>
-  )
+  );
 
   return (
     <div style={{ paddingTop: 18 }}>
@@ -47,11 +53,7 @@ export default function Home() {
       >
         <div className="container hero-grid">
           {/* Left content */}
-          <motion.div
-            initial={{ x: -30, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.7 }}
-          >
+          <motion.div className="hero-left">
             <h1 className="hero-title">
               Aideathon <span style={{ color: "var(--accent)" }}>2025</span>
             </h1>
@@ -60,41 +62,32 @@ export default function Home() {
               Hakeem College of Engineering and Technology.
             </p>
 
-            <motion.div style={{ marginTop: 12 }}>
+            <div className="hero-countdown">
               <Countdown />
-            </motion.div>
+            </div>
 
-            <motion.div
-              className="center-cta"
-              style={{ marginTop: 20, display: "flex", gap: 12 }}
-            >
+            <div className="center-cta">
               <a href="/register" className="cta-btn">
                 <AnimatedIcon><ClipboardCheck size={18} /></AnimatedIcon> Register Team
               </a>
               <a href="/problems" className="btn-classic">
                 <AnimatedIcon><FileText size={18} /></AnimatedIcon> Problem Statements
               </a>
-            </motion.div>
+            </div>
           </motion.div>
 
           {/* Right card */}
           <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
+            className="hero-card"
+            initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.7 }}
-            className="hero-card"
-            style={{
-              padding: 24,
-              borderRadius: 16,
-              background: "var(--card)",
-              boxShadow: "var(--shadow)",
-            }}
           >
             <div style={{ textAlign: "center" }}>
-              <div style={{ fontWeight: 800, fontSize: 18, marginBottom: 6 }}>
+              <div style={{ fontWeight: 800, fontSize: 20, marginBottom: 8 }}>
                 Hackathon Highlights
               </div>
-              <p style={{ color: "var(--muted)", fontSize: 14, lineHeight: 1.6 }}>
+              <p style={{ color: "var(--muted)", fontSize: 15, lineHeight: 1.6 }}>
                 • Exciting prizes & certificates <br />
                 • Internship opportunities <br />
                 • Industry networking <br />
@@ -105,7 +98,7 @@ export default function Home() {
         </div>
       </motion.section>
 
-      {/* Full About Section */}
+      {/* About Section */}
       <motion.section
         id="about"
         className="section container"
@@ -128,7 +121,6 @@ export default function Home() {
           technology.
         </p>
 
-        {/* Animated cards */}
         <div className="about-cards">
           {[
             { icon: <Calendar size={18} />, title: "Date", text: "26 October 2025" },
@@ -189,6 +181,84 @@ export default function Home() {
           Aideathon is your chance to learn, build, and make an impact!
         </p>
       </motion.section>
+
+      {/* Desktop-focused styles */}
+      <style>{`
+        .hero-grid {
+          display: flex;
+          gap: 40px;
+          align-items: flex-start;
+        }
+        .hero-left {
+          flex: 1;
+          min-width: 300px;
+        }
+        .hero-card {
+          flex: 1;
+          min-width: 280px;
+          padding: 32px;
+          background: var(--card);
+          border-radius: 20px;
+          box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        .hero-title {
+          font-size: 3rem;
+          font-weight: 800;
+        }
+        .hero-desc {
+          font-size: 1.2rem;
+          margin-top: 8px;
+        }
+        .hero-countdown {
+          margin-top: 20px;
+        }
+        .center-cta {
+          margin-top: 24px;
+          display: flex;
+          gap: 16px;
+        }
+        .center-cta a {
+          padding: 12px 20px;
+          border-radius: 12px;
+          font-weight: 600;
+        }
+        .about-cards {
+          display: flex;
+          gap: 20px;
+          margin-top: 24px;
+        }
+        .about-cards .card {
+          flex: 1 1 200px;
+          padding: 20px;
+          border-radius: 16px;
+          background: var(--card);
+          box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+          .hero-grid {
+            flex-direction: column;
+          }
+          .hero-card {
+            margin-top: 20px;
+            padding: 24px;
+          }
+          .hero-title {
+            font-size: 2rem;
+          }
+          .hero-desc {
+            font-size: 1rem;
+          }
+          .center-cta {
+            flex-direction: column;
+            gap: 12px;
+          }
+          .about-cards {
+            flex-direction: column;
+          }
+        }
+      `}</style>
     </div>
-  )
+  );
 }
