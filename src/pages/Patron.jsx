@@ -12,7 +12,6 @@ export default function Patron() {
   ]
 
   const coordinators = [
-    
     { role: "Student Coordinator", name: "SURESH KRISHAN", detail: "Student Coordinator - Contact" },
     { role: "Student Coordinator", name: "KISHOR", detail: "Student Coordinator - Web & Registration" },
   ]
@@ -38,10 +37,7 @@ export default function Patron() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: i * 0.05 }}
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 6px 20px rgba(0,0,0,0.15)",
-                }}
+                whileHover={{ scale: 1.03, boxShadow: "0 4px 12px rgba(0,0,0,0.1)" }}
                 style={{
                   background: "var(--card)",
                   borderRadius: 12,
@@ -59,10 +55,7 @@ export default function Patron() {
                 initial={{ opacity: 0, y: 15 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3, delay: i * 0.1 }}
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 6px 20px rgba(0,0,0,0.15)",
-                }}
+                whileHover={{ scale: 1.03, boxShadow: "0 4px 12px rgba(0,0,0,0.1)" }}
                 style={{
                   background: "var(--card)",
                   borderRadius: 16,
@@ -70,9 +63,7 @@ export default function Patron() {
                   textAlign: "center",
                 }}
               >
-                <h3 style={{ color: "var(--accent)", marginBottom: 6 }}>
-                  {person.role}
-                </h3>
+                <h3 style={{ color: "var(--accent)", marginBottom: 6 }}>{person.role}</h3>
                 <p style={{ fontWeight: 700, fontSize: 16 }}>{person.name}</p>
                 <p className="small">{person.detail}</p>
               </motion.div>
@@ -85,12 +76,10 @@ export default function Patron() {
     <div style={{ paddingTop: 18 }}>
       <div className="section container">
         <h2>Patrons & Coordinators</h2>
-        <p className="small" style={{ marginBottom: 24 }}>
-          Select a category below to view details.
-        </p>
+        <p className="small" style={{ marginBottom: 24 }}>Select a category below to view details.</p>
 
         {/* Tabs */}
-        <div className="tab-buttons" style={{ display: "flex", gap: 12, marginBottom: 24 }}>
+        <div className="tab-buttons" style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 24 }}>
           {["Patrons", "Coordinators", "Student Coordinators"].map((tab) => (
             <button
               key={tab}
@@ -116,6 +105,20 @@ export default function Patron() {
         {activeTab === "Coordinators" && renderCards(coordinators)}
         {activeTab === "Student Coordinators" && renderCards(studentCoordinators, true)}
       </div>
+
+      <style>{`
+        .patron-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+          gap: 16px;
+        }
+
+        @media (max-width: 768px) {
+          .patron-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+      `}</style>
     </div>
   )
 }
